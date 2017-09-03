@@ -1,0 +1,44 @@
+<body class="hold-transition login-page">
+  <div class="login-box" id="content">
+    <div class="login-logo">
+      <b>Angular4 站点</b> 新版
+    </div>
+    <div class="login-box-body">
+      <p class="login-box-msg"><b>登录系统页面</b></p>
+
+      <form #formRef="ngForm" (ngSubmit)="onSubmit(formRef.value)" class="show-form">
+        <div class="form-group has-feedback">
+          <input type="text" name="username" class="form-control" placeholder="用户名" id="username" required [(ngModel)]="username" [ngModel]="username"
+            (ngModelChange)="username = $event" #name="ngModel" #spy>
+        </div>
+        <div class="form-group has-feedback">
+          <input type="password" name="password" class="form-control" placeholder="密码" id="password" required [(ngModel)]="password"
+            [ngModel]="password" (ngModelChange)="password = $event" #pass="ngModel">
+        </div>
+        <div class="row">
+          <div class="col-xs-8">
+            <div *ngIf="auth?.hasError" style="color:red"><b>{{auth.errMsg}}</b></div>
+            <div [hidden]="name.valid || name.pristine" style="color:red">用户名为空</div>
+            <div [hidden]="pass.valid || pass.pristine" style="color:red">密码为空</div>
+            <!-- class="alert alert-danger" -->
+          </div>
+          <!-- /.col -->
+
+          <div class="col-xs-4">
+            <button type="submit" class="btn btn-primary btn-block btn-flat">登录</button>
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
+
+      <div class="social-auth-links text-center">
+        <p></p>
+        <p></p>
+        <p>用户名：<b>aaa</b> &nbsp;&nbsp;&nbsp;&nbsp; 密码：<b>000000</b></p>
+      </div>
+
+    </div>
+    <p style="height:30px"></p>
+    以前旧版访问url&nbsp;&nbsp; <a target="_blank" href="http://114.215.44.2:81"><b>http://114.215.44.2:81</b></a>
+  </div>
+</body>

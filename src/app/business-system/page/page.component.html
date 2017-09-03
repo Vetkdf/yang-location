@@ -1,0 +1,84 @@
+<body class="hold-transition skin-blue sidebar-mini">
+  <div class="wrapper">
+    <app-top></app-top>
+    <app-treeview [indexNews]='indexNews'></app-treeview>
+    <div class="content-wrapper" style="height:auto;">
+      <app-navigation [indexNews]='indexNews'></app-navigation>
+      <section class="content" id="content">
+
+        <select class="form-control" [(ngModel)]="comId" style="width:350px;border:1px solid ;" (ngModelChange)="onChange($event);"
+          name="select1">
+          <option [value]="c.id" *ngFor="let c of comIdList">{{c.mname}} -- {{c.isdel==0?'启用':'禁用'}} -- {{c.islock==0?'可编辑':'已锁定'}} -- {{c.isshow==0?'目录树隐藏':'目录树显示'}}</option>
+          </select>
+        <div style="height:12px"></div>
+        <wj-flex-grid #flexgrid1 [itemsSource]="cvPaging" auto-generate-columns="false" [itemFormatter]="itemFormatter">
+          <wj-flex-grid-column [header]="''" [binding]="'check'" [width]="35"></wj-flex-grid-column>
+          <wj-flex-grid-column [header]="'主键'" [binding]="'id'" [width]="0" [isReadOnly]="'true'"></wj-flex-grid-column>
+          <wj-flex-grid-column [header]="'页面名称'" [binding]="'pagename'" [width]="150" [isReadOnly]="'true'">
+            <ng-template wjFlexGridCellTemplate [cellType]="'Cell'" let-cell="cell">
+              <div style="text-align:left;"><b>{{cell.item.pagename}}</b></div>
+            </ng-template>
+          </wj-flex-grid-column>
+          <wj-flex-grid-column [header]="'页面URL'" [binding]="'pageurl'" [width]="150">
+            <ng-template wjFlexGridCellTemplate [cellType]="'Cell'" let-cell="cell">
+              <div style="text-align:left;">{{cell.item.pageurl}}</div>
+            </ng-template>
+          </wj-flex-grid-column>
+          <wj-flex-grid-column [header]="'完整URL'" [binding]="'allurl'" [width]="250">
+            <ng-template wjFlexGridCellTemplate [cellType]="'Cell'" let-cell="cell">
+              <div style="text-align:left;">{{cell.item.allurl}}</div>
+            </ng-template>
+          </wj-flex-grid-column>
+
+          <wj-flex-grid-column [header]="'页面大标题'" [binding]="'btitle'" [width]="'*'">
+            <ng-template wjFlexGridCellTemplate [cellType]="'Cell'" let-cell="cell">
+              <div style="text-align:left;">{{cell.item.btitle}}</div>
+            </ng-template>
+          </wj-flex-grid-column>
+          <wj-flex-grid-column [header]="'页面小标题'" [binding]="'stitle'" [width]="'*'">
+            <ng-template wjFlexGridCellTemplate [cellType]="'Cell'" let-cell="cell">
+              <div style="text-align:left;">{{cell.item.stitle}}</div>
+            </ng-template>
+          </wj-flex-grid-column>
+          <wj-flex-grid-column [header]="'样式类名称'" [binding]="'cssname'" [width]="150"></wj-flex-grid-column>
+          <wj-flex-grid-column [header]="'排序ID'" [binding]="'orderid'" [width]="80" [isReadOnly]="'true'" [align]="'center'">
+            <ng-template wjFlexGridCellTemplate [cellType]="'Cell'" let-cell="cell">
+              <span>{{cell.item.orderid}}</span>
+            </ng-template>
+          </wj-flex-grid-column>
+
+          <wj-flex-grid-column [header]="'应用状态'" [binding]="'isdel'" [width]="80" [isReadOnly]="'true'" [align]="'center'">
+            <ng-template wjFlexGridCellTemplate [cellType]="'Cell'" let-cell="cell">
+              <span [ngStyle]="{color:cell.item.isdel == 0 ?'green':'red'}">
+                      {{cell.item.isdel==0?'启用':'禁用'}}
+                    </span>
+            </ng-template>
+          </wj-flex-grid-column>
+          <wj-flex-grid-column [header]="'编辑状态'" [binding]="'islock'" [width]="80" [isReadOnly]="'true'" [align]="'center'">
+            <ng-template wjFlexGridCellTemplate [cellType]="'Cell'" let-cell="cell">
+              <span [ngStyle]="{color:cell.item.islock == 0 ?'green':'red'}">
+                      {{cell.item.islock==0?'可编辑':'已锁定'}}
+                    </span>
+            </ng-template>
+          </wj-flex-grid-column>
+          <wj-flex-grid-column [header]="'目录树显示'" [binding]="'isshow'" [width]="100" [isReadOnly]="'true'" [align]="'center'">
+            <ng-template wjFlexGridCellTemplate [cellType]="'Cell'" let-cell="cell">
+              <span [ngStyle]="{color:cell.item.isshow == 0 ?'red':'green'}">
+                      {{cell.item.isshow==0?'隐藏':'显示'}}
+                    </span>
+            </ng-template>
+          </wj-flex-grid-column>
+
+        </wj-flex-grid>
+        <app-paging [pageNews]="this.pageNews" (change)="bindpage($event)"></app-paging>
+        <div style="float:right;">
+          <button type="button" class="btn btn-primary" (click)="addnew()" disabled="disabled">添加数据</button>
+          <button type="button" class="btn btn-primary" (click)="edit()" disabled="disabled">编辑数据</button>
+          <button type="button" class="btn btn-primary" (click)="dellList()" disabled="disabled">批量删除</button> &nbsp;&nbsp;&nbsp;
+        </div>
+
+      </section>
+    </div>
+    <app-footer></app-footer>
+  </div>
+</body>

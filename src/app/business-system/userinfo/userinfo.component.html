@@ -1,0 +1,64 @@
+<body class="hold-transition skin-blue sidebar-mini">
+  <div class="wrapper">
+    <app-top></app-top>
+    <app-treeview [indexNews]='indexNews'></app-treeview>
+    <div class="content-wrapper" style="height:auto;">
+      <app-navigation [indexNews]='indexNews'></app-navigation>
+      <section class="content" id="content">
+
+        <select class="form-control" [(ngModel)]="comId" style="width:350px;border:1px solid ;" (ngModelChange)="onChange($event);"
+          name="select1">
+        <option [value]="c.id" *ngFor="let c of comIdList">{{c.gname}} -- {{c.isdel==0?'启用':'禁用'}} -- {{c.islock==0?'可编辑':'已锁定'}} </option>
+        </select>
+        <div style="height:12px"></div>
+        <wj-flex-grid #flexgrid1 [itemsSource]="cvPaging" auto-generate-columns="false" [itemFormatter]="itemFormatter">
+          <wj-flex-grid-column [header]="''" [binding]="'check'" [width]="35"></wj-flex-grid-column>
+          <wj-flex-grid-column [header]="'主键'" [binding]="'id'" [width]="0" [isReadOnly]="'true'"></wj-flex-grid-column>
+          <wj-flex-grid-column [header]="'登录用户名'" [binding]="'username'" [width]="150" [isReadOnly]="'true'">
+            <ng-template wjFlexGridCellTemplate [cellType]="'Cell'" let-cell="cell">
+              <div style="text-align:left;"><b>{{cell.item.username}}</b></div>
+            </ng-template>
+          </wj-flex-grid-column>
+          <wj-flex-grid-column [header]="'显示用户名'" [binding]="'showname'" [width]="'*'">
+            <ng-template wjFlexGridCellTemplate [cellType]="'Cell'" let-cell="cell">
+              <div style="text-align:left;">{{cell.item.showname}}</div>
+            </ng-template>
+          </wj-flex-grid-column>
+          <wj-flex-grid-column [header]="'用户图片'" [binding]="'picurl'" [width]="'*'">
+            <ng-template wjFlexGridCellTemplate [cellType]="'Cell'" let-cell="cell">
+              <div style="text-align:left;">{{cell.item.picurl}}</div>
+            </ng-template>
+          </wj-flex-grid-column>
+          <wj-flex-grid-column [header]="'性别'" [binding]="'sex'" [width]="100" [align]="'center'">
+            <ng-template wjFlexGridCellTemplate [cellType]="'Cell'" let-cell="cell">
+              <div style="text-align:center;">{{cell.item.sex == 1? '男士':'女士'}}</div>
+            </ng-template>
+          </wj-flex-grid-column>
+          <wj-flex-grid-column [header]="'应用状态'" [binding]="'isdel'" [width]="80" [isReadOnly]="'true'" [align]="'center'">
+            <ng-template wjFlexGridCellTemplate [cellType]="'Cell'" let-cell="cell">
+              <span [ngStyle]="{color:cell.item.isdel == 0 ?'green':'red'}">
+                    {{cell.item.isdel==0?'启用':'禁用'}}
+                  </span>
+            </ng-template>
+          </wj-flex-grid-column>
+          <wj-flex-grid-column [header]="'编辑状态'" [binding]="'islock'" [width]="80" [isReadOnly]="'true'" [align]="'center'">
+            <ng-template wjFlexGridCellTemplate [cellType]="'Cell'" let-cell="cell">
+              <span [ngStyle]="{color:cell.item.islock == 0 ?'green':'red'}">
+                    {{cell.item.islock==0?'可编辑':'已锁定'}}
+                  </span>
+            </ng-template>
+          </wj-flex-grid-column>
+
+        </wj-flex-grid>
+        <app-paging [pageNews]="this.pageNews" (change)="bindpage($event)"></app-paging>
+        <div style="float:right;">
+          <button type="button" class="btn btn-primary" (click)="addnew()" disabled="disabled">添加数据</button>
+          <button type="button" class="btn btn-primary" (click)="edit()" disabled="disabled">编辑数据</button>
+          <button type="button" class="btn btn-primary" (click)="dellList()" disabled="disabled">批量删除</button> &nbsp;&nbsp;&nbsp;
+        </div>
+
+      </section>
+    </div>
+    <app-footer></app-footer>
+  </div>
+</body>

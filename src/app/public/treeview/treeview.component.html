@@ -1,0 +1,37 @@
+<aside class="main-sidebar">
+  <section class="sidebar">
+    <div class="user-panel">
+      <div class="pull-left image">
+        <img src="../../assets/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+      </div>
+      <div class="pull-left info">
+        <p>作者：Vetkdf</p>
+        <a href="#"><i class="fa fa-circle text-success"></i> 在线</a>
+      </div>
+    </div>
+    <ul class="sidebar-menu">
+      <li class="header">导航树目录</li>
+      <!--  
+      <li [ngClass]="{'active':check == '/business/welcome'}">
+        <a routerLink="/business/welcome"><i class="fa fa-circle-o text-red"></i> <span>欢迎页面</span></a>
+      </li>
+      -->
+
+      <li class="treeview" *ngFor="let t of moduleNews" [ngClass]="{'active':moduleurl == t.murl}">
+        <a href="#" *ngIf="t.isshow == 1">
+          <i class="{{t.cssname}}"></i>
+          <span>{{t.mname}}</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu" *ngIf="t.isshow == 1">
+          <li *ngFor="let k of t.pages" [ngClass]="{'active':pageurl == k.pageurl}">
+            <a *ngIf="k.isshow == 1" routerLink="{{k.allurl}}"><i class="{{k.cssname}}"></i>{{k.pagename}}</a>
+          </li>
+        </ul>
+      </li>
+
+    </ul>
+  </section>
+</aside>

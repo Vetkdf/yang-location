@@ -1,0 +1,99 @@
+<body class="hold-transition skin-blue sidebar-mini">
+  <div class="wrapper">
+    <app-top></app-top>
+    <app-treeview [indexNews]='indexNews'></app-treeview>
+    <div class="content-wrapper">
+      <app-navigation [indexNews]='indexNews'></app-navigation>
+      <section class="content" id="content">
+
+        <div class="row">
+          <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box bg-aqua">
+              <span class="info-box-icon"><i class="fa fa-bookmark-o"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">对应的angular版本</span>
+                <span class="info-box-number">Ngx-bootstrap</span>
+
+                <div class="progress">
+                  <div class="progress-bar" style="width: 70%"></div>
+                </div>
+                <span class="progress-description">
+                    需要使用特效的时候使用
+                  </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box bg-green">
+              <span class="info-box-icon"><i class="fa fa-thumbs-o-up"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">皮肤库</span>
+                <span class="info-box-number">Admin LTE</span>
+
+                <div class="progress">
+                  <div class="progress-bar" style="width: 70%"></div>
+                </div>
+                <span class="progress-description">
+                    所有页面上都使用
+                  </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box bg-yellow">
+              <span class="info-box-icon"><i class="fa fa-calendar"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">控件集Wijmo5</span>
+                <span class="info-box-number">Flex Grid</span>
+
+                <div class="progress">
+                  <div class="progress-bar" style="width: 70%"></div>
+                </div>
+                <span class="progress-description">
+                    有表格的地方使用
+                  </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box bg-red">
+              <span class="info-box-icon"><i class="fa fa-comments-o"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">SSM的后台接口</span>
+                <span class="info-box-number">REST Ful规则</span>
+
+                <div class="progress">
+                  <div class="progress-bar" style="width: 70%"></div>
+                </div>
+                <span class="progress-description">
+                    数据交互地方需要
+                  </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        项目使用Angular4框架开发，使用 Bootstrap AdminLte 皮肤。后端采用Spring SSM框架开发的RestFul接口获取数据。包含以下一些三方库的引用。
+        <strong>Wijmo 5</strong> 主要是用里面的flexgrid表格。
+        <strong>Admin Lte </strong> 整个项目的皮肤库，下载皮肤后切分到angular4组件内。
+        <strong>ngx-bootstrap</strong> 一些特效用。
+        <strong>Jquery</strong> 补充使用。
+        <br/><br/> 完全理想化的使用angualr4前后端全部分离的开发流程。理论上这样，实际中比较难达到。
+        <br/>
+        <div style=" text-align:left;margin:0 auto;">
+        <a href="http://114.215.44.2:83/List.jpg" target="_blank"><img src="http://114.215.44.2:83/List.jpg"/></a>
+        </div>
+
+
+      </section>
+    </div>
+    <app-footer></app-footer>
+  </div>
+</body>
