@@ -11,7 +11,7 @@ import * as wjGrid from 'wijmo/wijmo.grid';
   templateUrl: './page.component.html',
   styleUrls: ['./page.component.css']
 })
-export class PageComponent extends BaseComponent { //implements OnInit
+export class PageComponent extends BaseComponent {
 
   @ViewChild('flexgrid1') public flexgrid1: wjGrid.FlexGrid;
   cvPaging: wjCore.CollectionView = new wjCore.CollectionView();
